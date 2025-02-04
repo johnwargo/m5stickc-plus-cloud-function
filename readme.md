@@ -38,7 +38,7 @@ To power on the device, press the button on the left side of the device, it's th
 
 ![A photo of the sketch in action on the device](/images/image-01.jpg)
 
-To power the device off, depress the power button for 6 seconds (or so).
+To power off (shutdown) the device, depress the power button for 6 seconds (or so).
 
 To trigger/execute the remote URL configured in the sketch, press the button labeled **M5** immediately below the screen displaying the words **Push Button**.
 

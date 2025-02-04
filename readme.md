@@ -26,6 +26,24 @@ When the user powers on the device, here's what happens:
 4. When the user (you) presses the button, the sketch connects to the remote site and updates the display with success or failure based on what happened. 
 4. After 30 seconds (30000 milliseconds, configurable in the config file) of inactivity, the device shuts itself down. 
 
+**Note:** Currently, the sketch indicates success only when the remote server returns a 200 (`HTTP OK`) response code. That should be OK for most use cases, but if you want to respond differently to other response codes, you must modify the sketch yourself.
+
+To run this sketch on a M5Stack M5StickC-Plus device, you must:
+
+1. Download the Certificate Authority Public Certificate for the host you want the sketch to connect to. You can find instructions for this at [Arduino ESP32 Connect Using HTTPS](https://johnwargo.com/posts/2025/arduino-esp32-connect-https/) or [Cert2Arduino](https://cert2arduino.netlify.app/).
+2. Modify the configuration as described in the previous section.
+3. Build and deploy the sketch to the device.
+
+To power on the device, press the button on the left side of the device, it's the one highlighted with the blue arrow in the following figure.
+
+![A photo of the sketch in action on the device](/images/image-01.jpg)
+
+To power the device off, depress the power button for 6 seconds (or so).
+
+To trigger/execute the remote URL configured in the sketch, press the button labeled **M5** immediately below the screen displaying the words **Push Button**.
+
+If execution completes successfully, the screen will turn green and you'll see **Success!** on the display. If it fails for whatever reason, the screen will turn red and display **Failure**.
+
 Use the Arduino IDE and Serial Monitor to view the results of the remote URL connection during testing.
 
 ## Configuring the Sketch
@@ -102,22 +120,6 @@ String paramsArray[PARAM_ROWS][2] = {
 ```
 
 Populate the array with as many key/value pairs as needed, ensuring that the `PARAM_ROWS` property reflects the number of rows in the array.
-
-## Operation
-
-**Note:** Currently, the sketch indicates success only when the remote server returns a 200 (`HTTP OK`) response code. That should be OK for most use cases, but if you want to respond differently to other response codes, you must modify the sketch yourself.
-
-To run this sketch on a M5Stack M5StickC-Plus device, modify the configuration as described in the previous section, build, then deploy the sketch to the device.
-
-To power on the device, press the button on the left side of the device, it's the one highlighted with the blue arrow in the following figure.
-
-![A photo of the sketch in action on the device](/images/image-01.jpg)
-
-To power the device off, depress the power button for 6 seconds (or so).
-
-To trigger/execute the remote URL configured in the sketch, press the button labeled **M5** immediately below the screen displaying the words **Push Button**.
-
-If execution completes successfully, the screen will turn green and you'll see **Success!** on the display. If it fails for whatever reason, the screen will turn red and display **Failure**.  Use the Arduino IDE Serial Monitor to help you troubleshoot issues that arise when connecting to the remote host.
 
 ## FAQ
 

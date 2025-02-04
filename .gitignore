@@ -1,3 +1,4 @@
 # Files
+cert.h
 config.h
 *.crt

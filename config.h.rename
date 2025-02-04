@@ -1,0 +1,12 @@
+#define REMOTE_HOST ""
+#define DELAY_FAILURE 10000
+#define DELAY_INACTIVITY 30000
+#define DELAY_SUCCESS 5000
+#define WIFI_SSID ""
+#define WIFI_PSWD ""
+
+#define USE_PARAMS false
+const int PARAM_ROWS = 2;
+String paramsArray[PARAM_ROWS][2] = {
+  { "", "" }, { "", "" }
+};

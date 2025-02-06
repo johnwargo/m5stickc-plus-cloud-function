@@ -1,5 +1,7 @@
 # M5StackC-Plus Cloud Function Execution
 
+![Header image](images/header.jpg)
+
 A sketch for the [M5Stack M5StickC-Plus](https://shop.m5stack.com/products/m5stickc-plus-esp32-pico-mini-iot-development-kit) battery powered device that triggers a URL (a REST API or cloud function) at the press of a button.
 
 The particular project is more about how to trigger a remote URL via TLS (HTTPS) and pass JSON data along with the request. I didn't know how to do this on the ESP32 platform, so I created this project to teach myself. The bonus is I get a mini garage opener out of it too (see Background below).

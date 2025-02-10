@@ -33,11 +33,11 @@ void EventLoopCode(void* pvParameters) {
           updateActionScreen(RED, BLACK, "Failure");
           delay(DELAY_FAILURE);
         }
+        startShutdownTimer(DELAY_INACTIVITY);
+        resetPushScreen();
         // Renable the button for another press (but only after the
         // previous one completed)
         btnPressed = !btnPressed;
-        startShutdownTimer(DELAY_INACTIVITY);
-        resetPushScreen();
       }
     }
     // https://randomerrors.dev/posts/2023/esp32-watchdog-got-triggered/

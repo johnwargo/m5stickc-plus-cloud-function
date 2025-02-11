@@ -1,12 +1,12 @@
-#define REMOTE_HOST ""
+#define REMOTE_HOST "https://us-east1-jmw-demos.cloudfunctions.net/jsonbody"
 #define DELAY_FAILURE 10000
 #define DELAY_INACTIVITY 30000
 #define DELAY_SUCCESS 5000
 #define WIFI_SSID ""
 #define WIFI_PSWD ""
 
-#define USE_PARAMS false
+#define USE_PARAMS true
 const int PARAM_ROWS = 2;
 String paramsArray[PARAM_ROWS][2] = {
-  { "", "" }, { "", "" }
+  { "param1", "this" }, { "param2", "that" }
 };

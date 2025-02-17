@@ -28,8 +28,6 @@ TaskHandle_t EventLoop;
 * of the code
 *************************************************************************/
 bool sendRequest = true;
-// set the following to false to disable auto shutdown
-bool autoShutdown = true;
 // flag used to control activity in the `eventloop` thread
 bool btnPressed;
 // used to control/manage the shutdown timer
@@ -108,24 +106,22 @@ void loop() {
     M5.update();
     if (M5.BtnA.wasReleased()) {
       Serial.println("Button pressed");
-      // When true, the event loop thread picks it up and
-      // runs with it, calling the configured URL
+      cancelShutdownTimer();
+      // When true, the event loop thread picks it up and runs with it, 
+      // calling the configured URL
       btnPressed = true;
     }
   }
 
-  // is autoShutdown enabled?
-  if (autoShutdown) {
-    // do we have an active shutdown timer?
-    if (shutdownDelay > 0) {
-      // then check the timer
-      if ((millis() - shutdownDelayStart) > shutdownDelay) {
-        M5.Display.clear();  // clear the screen
-        centerText(firstTextLine, "Shutting");
-        centerText(secondTextLine, "Down");
-        delay(1000);
-        M5.Power.powerOff();  // turn off the device
-      }
+  // do we have an active shutdown timer?
+  if (shutdownDelay > 0) {
+    // then check the timer
+    if ((millis() - shutdownDelayStart) > shutdownDelay) {
+      M5.Display.clear();  // clear the screen
+      centerText(firstTextLine, "Shutting");
+      centerText(secondTextLine, "Down");
+      delay(1000);
+      M5.Power.powerOff();  // turn off the device
     }
   }
 }
@@ -177,7 +173,7 @@ void cancelShutdownTimer() {
 }
 
 void startShutdownTimer(int duration) {
-  Serial.println("Setting shutdown timer: " + String(duration) + " milliseconds");
+  Serial.printf("Setting shutdown timer: %s milliseconds\n", String(duration));
   shutdownDelay = duration;
   shutdownDelayStart = millis();
 }

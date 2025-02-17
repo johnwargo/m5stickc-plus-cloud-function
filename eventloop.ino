@@ -24,7 +24,6 @@ void EventLoopCode(void* pvParameters) {
     if (btnPressed) {
       Serial.println("\nButton pressed");
       if (sendRequest) {
-        cancelShutdownTimer();
         updateActionScreen(BLUE, WHITE, "Connecting");
         if (callRemoteAPI()) {
           updateActionScreen(GREEN, BLACK, "Success!");
@@ -33,10 +32,9 @@ void EventLoopCode(void* pvParameters) {
           updateActionScreen(RED, BLACK, "Failure");
           delay(DELAY_FAILURE);
         }
-        startShutdownTimer(DELAY_INACTIVITY);
         resetPushScreen();
-        // Renable the button for another press (but only after the
-        // previous one completed)
+        startShutdownTimer(DELAY_INACTIVITY);
+        // Renable the button for another press (but only after the previous one completes)
         btnPressed = !btnPressed;
       }
     }

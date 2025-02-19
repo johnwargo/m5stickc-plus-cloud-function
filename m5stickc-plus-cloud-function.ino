@@ -16,9 +16,9 @@
 #define firstTextLine 50
 #define secondTextLine 80
 
+const String errorStr = "Error: ";
 const char* ssid = WIFI_SSID;      // from `config.h`
 const char* password = WIFI_PSWD;  // from `config.h`
-const String errorStr = "Error: ";
 
 TaskHandle_t EventLoop;
 
@@ -45,6 +45,7 @@ void setup() {
   M5.Display.setTextSize(2);
 
   // Configuration Validation
+  M5.Display.fillScreen(BLACK);
   M5.Display.setTextColor(WHITE);
   centerText(firstTextLine, "Validate");
   centerText(secondTextLine, "Config");
@@ -54,9 +55,7 @@ void setup() {
     centerText(firstTextLine, "Config");
     centerText(secondTextLine, "Invalid");
     Serial.println("Configuration is invalid!");
-    while (true) {  //loops forever
-      delay(100);
-    }
+    while (true) delay(100);  //loops forever
   }
 
   // Wi-Fi connection
@@ -107,7 +106,7 @@ void loop() {
     if (M5.BtnA.wasReleased()) {
       Serial.println("Button pressed");
       cancelShutdownTimer();
-      // When true, the event loop thread picks it up and runs with it, 
+      // When true, the event loop thread picks it up and runs with it,
       // calling the configured URL
       btnPressed = true;
     }
@@ -136,6 +135,7 @@ void centerText(int y, String text) {
 
 void resetPushScreen() {
   // Update the display for primary activity
+  M5.Display.clear();
   M5.Display.fillScreen(BLACK);
   M5.Display.setTextColor(WHITE);
   centerText(60, "Push");
@@ -146,6 +146,7 @@ void resetPushScreen() {
 }
 
 void updateActionScreen(int color, int textColor, String msg) {
+  M5.Display.clear();
   M5.Display.fillScreen(color);
   M5.Display.setTextColor(textColor);
   centerText(50, msg);
